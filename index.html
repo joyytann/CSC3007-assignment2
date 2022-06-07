@@ -48,7 +48,8 @@
           selectElement.addEventListener('change', (event) => {
             console.log(event.target.value);
             d3.selectAll("text").remove();
-            d3.selectAll("rect").remove();
+            d3.selectAll("rect").remove(); 
+            d3.selectAll("g").remove();
             getGraph(event.target.value);
           });
               function getGraph(year){
