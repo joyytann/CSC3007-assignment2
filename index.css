@@ -1,0 +1,24 @@
+.myYaxis{
+  margin-left:20px;
+}
+.dropdown{
+  /* margin:auto; */
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  
+}
+#years{
+  height:30px;
+  width: 100px;
+  justify-content: center;
+  margin-top: 10px;
+ 
+
+  /* margin:auto; */
+  /* display: flex; */
+}
+#loadbarchart{
+  margin:auto;
+}
