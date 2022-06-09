@@ -32,6 +32,8 @@
                       elmts.push(item);
                     }
                   } 
+                  elmts =  elmts.sort();
+            elmts =  elmts.reverse();
                for (var i = 0; i < elmts.length; i++) {
                 var optn = elmts[i];
                 var el = document.createElement("option");
@@ -39,6 +41,7 @@
                 el.value = optn;
                 select.appendChild(el);
             }
+            
             getGraph(elmts[0]);
                 });
        
@@ -80,7 +83,7 @@
                 .attr("text-anchor", "middle")  
                 .style("font-size", "16px") 
                 .style("text-decoration", "underline")  
-                .text("To find out which type of serious crime was the most common in SG");
+                .text("To find out which type of serious crime was the most common in SG in " + year);
 
                 var x = d3.scaleBand()
                 .range([ 0, width ])
@@ -119,25 +122,8 @@
                 var rect = barchart.selectAll("rect")
                 .data(array)
                 .enter()
-                .append("rect") // Add a new rect for each new element// get the already existing elements as well
-                // .merge(rect)
-                .attr("x", function(d) { return x(d.level_2); })
-                .attr("y", function(d) { return y(d.value); })
-                .attr("width", x.bandwidth())
-                .attr("height", function(d) { return height - y(d.value); })
-                .attr("fill", "#5DADE2");
-
-                rect.transition() // and apply changes to all of them
-                .duration(1000);
-               
-                // rect.on("mouseover", (event, d) => {
-
-                // console.log(d);
-                
-                // .on("mouseout", (event, d) => {
-                // d3.select(event.currentTarget).attr("stroke", "none");
-                // });
-                rect.on("mouseover", (event, d) => {
+                .append("rect")
+                .on("mouseover", (event, d) => {
                 d3.select(event.currentTarget)
                   .attr("stroke", "black")
                   .attr("stroke-width", 2);
@@ -152,6 +138,16 @@
                   d3.select(event.currentTarget).attr("stroke", "none");    
                    tooltip.style("visibility", "hidden");
                 })
+
+                .transition() // and apply changes to all of them
+                .duration(1000)
+                 // Add a new rect for each new element// get the already existing elements as well
+                // .merge(rect)
+                .attr("x", function(d) { return x(d.level_2); })
+                .attr("y", function(d) { return y(d.value); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.value); })
+                .attr("fill", "#5DADE2");
             
                      //X-scale
                 barchart
