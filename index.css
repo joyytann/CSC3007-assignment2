@@ -2,10 +2,8 @@
   margin-left:20px;
 }
 .dropdown{
-  /* margin:auto; */
   display: flex;
   flex-direction: column;
-  width: 80%;
   align-items: center;
   
 }
@@ -14,11 +12,8 @@
   width: 100px;
   justify-content: center;
   margin-top: 10px;
- 
-
-  /* margin:auto; */
-  /* display: flex; */
 }
 #loadbarchart{
   margin:auto;
+
 }
