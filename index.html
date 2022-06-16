@@ -120,6 +120,7 @@
                 .style("padding","5px")
                 .style("padding-left","15px")
                 .style("padding-right","15px")
+                .style('opacity',"0.9")
                 .style("border","1px solid black");
 
 
@@ -130,11 +131,11 @@
                 .append("rect")
                 .on("mouseover", (event, d) => {
                 d3.select(event.currentTarget)
-                  .attr("stroke", "black")
+                  .attr("stroke", "#4690B5")
                   .attr("stroke-width", 2);
                 
                 console.log(event.pageX);
-                tooltip.text("Number of cases: " + d.value)
+                tooltip.html(`Offence: ${d.level_2} <br/> No of cases: ${d.value}`)
                 .style("visibility", "visible")
                 .style('left', event.pageX +30 + 'px')
                 .style('top', event.pageY - 50 + 'px');
