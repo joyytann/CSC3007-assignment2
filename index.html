@@ -48,7 +48,6 @@
               var selectElement = document.getElementById("years");
 
               selectElement.addEventListener('change', (event) => {
-                console.log(event.target.value);
                 d3.selectAll("text").remove();
                 d3.selectAll("rect").remove(); 
                 d3.selectAll("g").remove();
@@ -75,9 +74,6 @@
                   height = 800 - margin.top - margin.bottom;  
                   
                 var barchart = d3.select("svg")
-        
-                // .attr("width", width + margin.left + margin.right)
-                // .attr("height", height + margin.top + margin.bottom)
                 .attr('viewBox', '0 0 '+ (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
                 .append("g")
                 .attr("transform","translate(" + margin.left + "," + margin.top + ")");
@@ -133,8 +129,7 @@
                 d3.select(event.currentTarget)
                   .attr("stroke", "#4690B5")
                   .attr("stroke-width", 2);
-                
-                console.log(event.pageX);
+              
                 tooltip.html(`Offence: ${d.level_2} <br/> No of cases: ${d.value}`)
                 .style("visibility", "visible")
                 .style('left', event.pageX +30 + 'px')
