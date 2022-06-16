@@ -42,34 +42,37 @@
                 select.appendChild(el);
             }
             
-            getGraph(elmts[0]);
+              yeararray = getYear(list,elmts[0]);
+              getGraph(yeararray,elmts[0]);
+
+              var selectElement = document.getElementById("years");
+
+              selectElement.addEventListener('change', (event) => {
+                console.log(event.target.value);
+                d3.selectAll("text").remove();
+                d3.selectAll("rect").remove(); 
+                d3.selectAll("g").remove();
+                yeararray = getYear(list,event.target.value);
+                getGraph(yeararray,event.target.value);
+              });
+
+
+          
                 });
        
 
-          var selectElement = document.getElementById("years");
+          
+          function getYear(list, year){
+            let data = list.filter(data => data.year == year);
+            return data;
+          }
 
-          selectElement.addEventListener('change', (event) => {
-            console.log(event.target.value);
-            d3.selectAll("text").remove();
-            d3.selectAll("rect").remove(); 
-            d3.selectAll("g").remove();
-            getGraph(event.target.value);
-          });
-              function getGraph(year){
-                var array  = [];
-                var url =
-                `https://data.gov.sg/api/action/datastore_search?resource_id=83c21090-bd19-4b54-ab6b-d999c251edcf&q=${year}`;
-              fetch(url)
-                .then((response) => {
-                  return response.json();
-                })
-                .then((data) => {   
-                
-                   array = data.result.records;
+              function getGraph(array,year){
+             
                    console.log(array);
-                   var margin = {top: 100, right: 0, bottom: 70, left: 100},
+                   var margin = {top: 100, right: 100, bottom: 70, left: 100},
                   width = 1200 - margin.left - margin.right,
-                  height = 1000 - margin.top - margin.bottom;  
+                  height = 800 - margin.top - margin.bottom;  
                   
                 var barchart = d3.select("svg")
         
@@ -165,19 +168,9 @@
                     .text("Number of cases")
                     .style("margin","30px")
                     .attr("text-align", "middle");
-               // , function(d){tooltip.text(d.value); return tooltip.style("visibility", "visible");})
-                //.on("mouseout", function(){return tooltip.style("visibility", "hidden")})
-
-            });
+     
               }
-
-            
-              
-                
-          
-               
-
-            
+  
           </script>
     </div>
 </body>
