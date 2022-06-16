@@ -11,7 +11,7 @@
   
      
   </select>
-    <svg id="loadbarchart" width="1000" height="1500"></svg>
+    <svg id="loadbarchart"></svg>
     <script src="https://d3js.org/d3.v7.js"></script>
         <script>
             
@@ -67,13 +67,15 @@
                 
                    array = data.result.records;
                    console.log(array);
-                   var margin = {top: 100, right: 100, bottom: 70, left: 100},
+                   var margin = {top: 100, right: 0, bottom: 70, left: 100},
                   width = 1200 - margin.left - margin.right,
-                  height = 800 - margin.top - margin.bottom;  
+                  height = 1000 - margin.top - margin.bottom;  
                   
                 var barchart = d3.select("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
+        
+                // .attr("width", width + margin.left + margin.right)
+                // .attr("height", height + margin.top + margin.bottom)
+                .attr('viewBox', '0 0 '+ (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
                 .append("g")
                 .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
